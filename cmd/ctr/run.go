@@ -39,7 +39,7 @@ var runCommand = cli.Command{
 		}
 
 		// setup our event subscriber
-		nc, err := nats.Connect(context.String("events-address"))
+		nc, err := nats.Connect(context.GlobalString("events-address"))
 		if err != nil {
 			return err
 		}

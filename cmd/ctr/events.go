@@ -20,7 +20,7 @@ var eventsCommand = cli.Command{
 		},
 	},
 	Action: func(context *cli.Context) error {
-		nc, err := nats.Connect(context.String("events-address"))
+		nc, err := nats.Connect(context.GlobalString("events-address"))
 		if err != nil {
 			return err
 		}
