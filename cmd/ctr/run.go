@@ -27,6 +27,11 @@ var runCommand = cli.Command{
 			Name:  "tty, t",
 			Usage: "allocate a TTY for the container",
 		},
+		cli.StringFlag{
+			Name:  "events-address, e",
+			Usage: "nats address to retrieve events from",
+			Value: nats.DefaultURL,
+		},
 	},
 	Action: func(context *cli.Context) error {
 		id := context.Args().First()
@@ -39,7 +44,7 @@ var runCommand = cli.Command{
 		}
 
 		// setup our event subscriber
-		nc, err := nats.Connect(context.GlobalString("events-address"))
+		nc, err := nats.Connect(context.String("events-address"))
 		if err != nil {
 			return err
 		}

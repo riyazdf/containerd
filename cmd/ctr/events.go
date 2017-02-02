@@ -18,9 +18,14 @@ var eventsCommand = cli.Command{
 			Usage: "subjects filter",
 			Value: "containerd.>",
 		},
+		cli.StringFlag{
+			Name:  "events-address, e",
+			Usage: "nats address to retrieve events from",
+			Value: nats.DefaultURL,
+		},
 	},
 	Action: func(context *cli.Context) error {
-		nc, err := nats.Connect(context.GlobalString("events-address"))
+		nc, err := nats.Connect(context.String("events-address"))
 		if err != nil {
 			return err
 		}

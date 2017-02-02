@@ -6,7 +6,6 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/docker/containerd"
-	"github.com/nats-io/go-nats"
 	"github.com/urfave/cli"
 )
 
@@ -32,11 +31,6 @@ containerd client
 			Name:  "socket, s",
 			Usage: "socket path for containerd's GRPC server",
 			Value: "/run/containerd/containerd.sock",
-		},
-		cli.StringFlag{
-			Name:  "events-address, e",
-			Usage: "nats address to retrieve events from",
-			Value: nats.DefaultURL,
 		},
 	}
 	app.Commands = []cli.Command{
